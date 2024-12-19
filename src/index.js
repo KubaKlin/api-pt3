@@ -29,7 +29,14 @@ fetch(articleURL)
   });
 
 articleForm.addEventListener('submit', function (event) {
-  addArticle(event, articleForm, articleURL, allArticles, articleContainer, errorInfo);
+  addArticle(
+    event,
+    articleForm,
+    articleURL,
+    allArticles,
+    articleContainer,
+    errorInfo,
+  );
 });
 
 articleContainer.addEventListener('click', function (element) {

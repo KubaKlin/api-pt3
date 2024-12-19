@@ -45,14 +45,16 @@ body {
   margin: 0 0 15px;
 }
 
-.edit-button, .delete-button {
+.edit-button,
+.delete-button {
   color: #fff;
   border: 0 solid transparent;
   border-radius: 4px;
   padding: 5px 10px;
 }
 
-.edit-button:hover, .delete-button:hover {
+.edit-button:hover,
+.delete-button:hover {
   cursor: pointer;
 }
 
@@ -70,7 +72,8 @@ body {
   padding: 5px;
 }
 
-.edit-title, .edit-content {
+.edit-title,
+.edit-content {
   margin-bottom: 5px;
   padding: 5px 10px;
   border: 1px solid #ccc;

@@ -22,8 +22,8 @@ export function addArticle(
   })
     .then(function (response) {
       if (response.status === 409) {
-       return Promise.reject({ status: response.status });
-     }
+        return Promise.reject({ status: response.status });
+      }
       return response.json();
     })
     .then(function (article) {
@@ -41,5 +41,5 @@ export function addArticle(
     })
     .catch(function () {
       errorInfo.innerText = 'article with this title already exists!';
-    })
+    });
 }

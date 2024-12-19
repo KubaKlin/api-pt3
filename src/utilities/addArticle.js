@@ -4,6 +4,7 @@ export function addArticle(
   articleURL,
   allArticles,
   articleContainer,
+  errorInfo,
 ) {
   event.preventDefault();
   const titleInput = articleForm.querySelector('.title').value;
@@ -20,18 +21,25 @@ export function addArticle(
     },
   })
     .then(function (response) {
+      if (response.status === 409) {
+       return Promise.reject({ status: response.status });
+     }
       return response.json();
     })
     .then(function (article) {
+      errorInfo.innerText = '';
       allArticles.push(article);
       articleContainer.innerHTML += `
         <div class='article-${article.id} article-wrapper'>
           <h2>${article.title}</h2>
           <p>${article.content}</p>
-          <button data-id=${article.id} id="edit-${article.id}" data-action="edit">Edit</button>
-          <button data-id=${article.id} id="delete-${article.id}" data-action="delete">Delete</button>
+          <button data-id=${article.id} class="edit-${article.id} edit-button" data-action="edit">Edit</button>
+          <button data-id=${article.id} class="delete-${article.id} delete-button" data-action="delete">Delete</button>
         </div>
         <div class='edit-article-${article.id}'>
         </div>`;
-    });
+    })
+    .catch(function () {
+      errorInfo.innerText = 'article with this title already exists!';
+    })
 }

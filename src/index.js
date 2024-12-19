@@ -6,6 +6,7 @@ import { addArticle } from './utilities/addArticle';
 const articleContainer = document.querySelector('.article-container');
 const articleURL = `http://localhost:3000/articles`;
 const articleForm = document.querySelector('.article-form');
+const errorInfo = document.querySelector('.error-info');
 let allArticles = [];
 
 fetch(articleURL)
@@ -28,7 +29,7 @@ fetch(articleURL)
   });
 
 articleForm.addEventListener('submit', function (event) {
-  addArticle(event, articleForm, articleURL, allArticles, articleContainer);
+  addArticle(event, articleForm, articleURL, allArticles, articleContainer, errorInfo);
 });
 
 articleContainer.addEventListener('click', function (element) {

@@ -25,7 +25,7 @@ export function addArticle(
     .then(function (article) {
       allArticles.push(article);
       articleContainer.innerHTML += `
-        <div class='article-${article.id}'>
+        <div class='article-${article.id} article-wrapper'>
           <h2>${article.title}</h2>
           <p>${article.content}</p>
           <button data-id=${article.id} id="edit-${article.id}" data-action="edit">Edit</button>

@@ -21,11 +21,11 @@ body {
   color: #fff;
   border: 1px solid transparent;
   transition: background-color 300ms ease;
+  cursor: pointer;
 }
 
 .article-submit:hover {
   background-color: forestgreen;
-  cursor: pointer;
 }
 
 .article-wrapper {
@@ -51,10 +51,6 @@ body {
   border: 0 solid transparent;
   border-radius: 4px;
   padding: 5px 10px;
-}
-
-.edit-button:hover,
-.delete-button:hover {
   cursor: pointer;
 }
 
@@ -85,8 +81,5 @@ body {
   background-color: dodgerblue;
   color: #fff;
   padding: 5px;
-}
-
-.save-edit-button:hover {
   cursor: pointer;
 }

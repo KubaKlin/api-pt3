@@ -6,6 +6,7 @@ export function editArticle(
   articleContainer,
   element,
   articleURL,
+  errorInfo
 ) {
   const articleData = allArticles.find(function (article) {
     return article.id === element.target.dataset.id;
@@ -22,6 +23,7 @@ export function editArticle(
     const titleInput = document.querySelector('.edit-title').value;
     const contentInput = document.querySelector('.edit-content').value;
     const editedArticle = document.querySelector(`.article-${articleData.id}`);
+    errorInfo.innerText = '';
 
     fetch(`${articleURL}/${articleData.id}`, {
       method: 'PATCH',
@@ -34,6 +36,12 @@ export function editArticle(
       },
     })
       .then(function (response) {
+        if (response.status === 409) {
+          return Promise.reject({status: response.status});
+        }
+        if (!response.ok) {
+          return Promise.reject({status: response.status});
+        }
         return response.json();
       })
       .then(function (article) {
@@ -43,6 +51,9 @@ export function editArticle(
         });
         editForm.remove();
         addEditedArticle(article, editedArticle, articleContainer);
-      });
+      })
+      .catch(function () {
+        errorInfo.innerText = 'article with this title already exists!';
+    });
   });
 }

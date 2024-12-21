@@ -25,9 +25,6 @@ export function addArticle(
       },
     })
         .then(function (response) {
-          if (response.status === 409) {
-            return Promise.reject({status: response.status});
-          }
           if (!response.ok) {
             return Promise.reject({status: response.status});
           }
@@ -38,8 +35,12 @@ export function addArticle(
           addArticleStructure(article, articleContainer);
           allArticles.push(article);
         })
-        .catch(function () {
-          errorInfo.innerText = 'article with this title already exists!';
+        .catch(function (response) {
+          if (response.status === 409) {
+            errorInfo.innerText = 'article with this title already exists!';
+          } else {
+            errorInfo.innerText = 'something went wrong!';
+          }
         });
   } else {
     errorInfo.innerText = 'please fill in all fields!';

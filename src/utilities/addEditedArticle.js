@@ -20,9 +20,9 @@ export default function addEditedArticle(article, editedArticle) {
   const editDiv = document.createElement('div');
   editDiv.className = `edit-article-${article.id}`;
 
-  editedArticle.appendChild(heading);
-  editedArticle.appendChild(content);
-  editedArticle.appendChild(editButton);
-  editedArticle.appendChild(deleteButton);
-  editedArticle.appendChild(editDiv);
+  editedArticle?.appendChild(heading);
+  editedArticle?.appendChild(content);
+  editedArticle?.appendChild(editButton);
+  editedArticle?.appendChild(deleteButton);
+  editedArticle?.appendChild(editDiv);
 }

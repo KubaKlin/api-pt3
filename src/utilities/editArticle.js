@@ -16,9 +16,9 @@ export function editArticle(
     `.edit-article-${element.target.dataset.id}`,
   );
   const form = addEditForm(articleData);
-  editForm.appendChild(form);
+  editForm?.appendChild(form);
 
-  editForm.addEventListener('submit', function (element) {
+  editForm?.addEventListener('submit', function (element) {
     element.preventDefault();
     const titleInput = document.querySelector('.edit-title').value;
     const contentInput = document.querySelector('.edit-content').value;
@@ -36,9 +36,6 @@ export function editArticle(
       },
     })
       .then(function (response) {
-        if (response.status === 409) {
-          return Promise.reject({status: response.status});
-        }
         if (!response.ok) {
           return Promise.reject({status: response.status});
         }
@@ -52,8 +49,12 @@ export function editArticle(
         editForm.remove();
         addEditedArticle(article, editedArticle, articleContainer);
       })
-      .catch(function () {
-        errorInfo.innerText = 'article with this title already exists!';
+      .catch(function (response) {
+        if (response.status === 409) {
+          errorInfo.innerText = 'article with this title already exists!';
+        } else {
+          errorInfo.innerText = 'something went wrong!';
+        }
     });
   });
 }

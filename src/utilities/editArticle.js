@@ -1,3 +1,6 @@
+import {addEditForm} from "./addEditForm";
+import addEditedArticle from "./addEditedArticle";
+
 export function editArticle(
   allArticles,
   articleContainer,
@@ -11,13 +14,8 @@ export function editArticle(
   const editForm = articleContainer.querySelector(
     `.edit-article-${element.target.dataset.id}`,
   );
-  editForm.innerHTML = `
-    <form class='form edit-article' action='index.html' method='post'>
-      <form class="article-form">
-        <input required class="edit-title" placeholder="${articleData.title}">
-        <input required class="edit-content" placeholder="${articleData.content}">
-        <input class="save-edit-button" type="submit" value="Save Edit">
-    </form>`;
+  const form = addEditForm(articleData);
+  editForm.appendChild(form);
 
   editForm.addEventListener('submit', function (element) {
     element.preventDefault();
@@ -28,8 +26,8 @@ export function editArticle(
     fetch(`${articleURL}/${articleData.id}`, {
       method: 'PATCH',
       body: JSON.stringify({
-        title: titleInput,
-        content: contentInput,
+        title: !titleInput ? articleData.title : titleInput,
+        content: !contentInput ? articleData.content : contentInput,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -39,16 +37,12 @@ export function editArticle(
         return response.json();
       })
       .then(function (article) {
-        editedArticle.innerHTML = `
-          <div class='article-${article.id} article-wrapper'>
-            <h2>${article.title}</h2>
-            <p>${article.content}</p>
-            <button data-id=${article.id} class="edit-${article.id} edit-button" data-action="edit">Edit</button>
-            <button data-id=${article.id} class="delete-${article.id} delete-button" data-action="delete">Delete</button>
-          </div>
-          <div class='edit-article-${article.id}'>
-          </div>`;
-        editForm.innerHTML = '';
+        const oldArticleElements = document.querySelectorAll(`.article-${articleData.id} *`);
+        oldArticleElements.forEach(function(element) {
+          element.remove();
+        });
+        editForm.remove();
+        addEditedArticle(article, editedArticle, articleContainer);
       });
   });
 }

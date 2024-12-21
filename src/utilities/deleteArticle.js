@@ -5,13 +5,15 @@ export function deleteArticle(element, articleURL) {
       'Content-Type': 'application/json',
     },
   })
-  .then(function (response) {
-    return response.json();
-  })
-  .catch(function (error) {
-    console.error('Delete failed:', error);
-  });
-  const articleElement = document.querySelector(`.article-${element.target.dataset.id}`);
+    .then(function (response) {
+      return response.json();
+    })
+    .catch(function (error) {
+      console.error('Delete failed:', error);
+    });
+  const articleElement = document.querySelector(
+    `.article-${element.target.dataset.id}`,
+  );
   if (articleElement) {
     articleElement.remove();
   } else {

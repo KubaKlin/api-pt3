@@ -1,4 +1,4 @@
-import addArticleStructure from "./addArticleStructure";
+import addArticleStructure from './addArticleStructure';
 
 export function addArticle(
   event,
@@ -24,24 +24,24 @@ export function addArticle(
         'Content-Type': 'application/json',
       },
     })
-        .then(function (response) {
-          if (!response.ok) {
-            return Promise.reject({status: response.status});
-          }
-          return response.json();
-        })
-        .then(function (article) {
-          errorInfo.innerText = '';
-          addArticleStructure(article, articleContainer);
-          allArticles.push(article);
-        })
-        .catch(function (response) {
-          if (response.status === 409) {
-            errorInfo.innerText = 'article with this title already exists!';
-          } else {
-            errorInfo.innerText = 'something went wrong!';
-          }
-        });
+      .then(function (response) {
+        if (!response.ok) {
+          return Promise.reject({ status: response.status });
+        }
+        return response.json();
+      })
+      .then(function (article) {
+        errorInfo.innerText = '';
+        addArticleStructure(article, articleContainer);
+        allArticles.push(article);
+      })
+      .catch(function (response) {
+        if (response.status === 409) {
+          errorInfo.innerText = 'article with this title already exists!';
+        } else {
+          errorInfo.innerText = 'something went wrong!';
+        }
+      });
   } else {
     errorInfo.innerText = 'please fill in all fields!';
   }

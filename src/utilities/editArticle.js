@@ -1,12 +1,12 @@
-import {addEditForm} from "./addEditForm";
-import addEditedArticle from "./addEditedArticle";
+import { addEditForm } from './addEditForm';
+import addEditedArticle from './addEditedArticle';
 
 export function editArticle(
   allArticles,
   articleContainer,
   element,
   articleURL,
-  errorInfo
+  errorInfo,
 ) {
   const articleData = allArticles.find(function (article) {
     return article.id === element.target.dataset.id;
@@ -37,13 +37,15 @@ export function editArticle(
     })
       .then(function (response) {
         if (!response.ok) {
-          return Promise.reject({status: response.status});
+          return Promise.reject({ status: response.status });
         }
         return response.json();
       })
       .then(function (article) {
-        const oldArticleElements = document.querySelectorAll(`.article-${articleData.id} *`);
-        oldArticleElements.forEach(function(element) {
+        const oldArticleElements = document.querySelectorAll(
+          `.article-${articleData.id} *`,
+        );
+        oldArticleElements.forEach(function (element) {
           element.remove();
         });
         editForm.remove();
@@ -55,6 +57,6 @@ export function editArticle(
         } else {
           errorInfo.innerText = 'something went wrong!';
         }
-    });
+      });
   });
 }

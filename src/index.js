@@ -2,7 +2,7 @@ import './styles.css';
 import { deleteArticle } from './utilities/deleteArticle';
 import { editArticle } from './utilities/editArticle';
 import { addArticle } from './utilities/addArticle';
-import addArticleStructure from "./utilities/addArticleStructure";
+import addArticleStructure from './utilities/addArticleStructure';
 
 const articleContainer = document.querySelector('.article-container');
 const articleURL = `http://localhost:3000/articles`;

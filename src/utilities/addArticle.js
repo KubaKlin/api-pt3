@@ -9,17 +9,20 @@ export function addArticle(
   errorInfo,
 ) {
   event.preventDefault();
-  const titleInput = articleForm.querySelector('.title').value;
-  const contentInput = articleForm.querySelector('.content').value;
+  const titleInput = articleForm.querySelector('.title')?.value;
+  const contentInput = articleForm.querySelector('.content')?.value;
 
-  if (titleInput && contentInput) {
+  if (titleInput) {
     errorInfo.innerText = '';
+    const articleData = { title: titleInput };
+
+    if (contentInput) {
+      articleData.content = contentInput;
+    }
+
     fetch(articleURL, {
       method: 'POST',
-      body: JSON.stringify({
-        title: titleInput,
-        content: contentInput,
-      }),
+      body: JSON.stringify(articleData),
       headers: {
         'Content-Type': 'application/json',
       },

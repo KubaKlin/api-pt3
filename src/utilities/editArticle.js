@@ -20,8 +20,8 @@ export function editArticle(
 
   editForm?.addEventListener('submit', function (element) {
     element.preventDefault();
-    const titleInput = document.querySelector('.edit-title').value;
-    const contentInput = document.querySelector('.edit-content').value;
+    const titleInput = document.querySelector('.edit-title')?.value;
+    const contentInput = document.querySelector('.edit-content')?.value;
     const editedArticle = document.querySelector(`.article-${articleData.id}`);
     errorInfo.innerText = '';
 
@@ -48,7 +48,7 @@ export function editArticle(
         oldArticleElements.forEach(function (element) {
           element.remove();
         });
-        editForm.remove();
+        editForm?.remove();
         addEditedArticle(article, editedArticle, articleContainer);
       })
       .catch(function (response) {

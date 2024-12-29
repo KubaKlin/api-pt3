@@ -5,9 +5,6 @@ export function deleteArticle(element, articleURL) {
       'Content-Type': 'application/json',
     },
   })
-    .then(function (response) {
-      return response.json();
-    })
     .catch(function (error) {
       console.error('Delete failed:', error);
     });

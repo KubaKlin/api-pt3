@@ -7,7 +7,7 @@ import addArticleStructure from './utilities/addArticleStructure';
 const articleContainer = document.querySelector('.article-container');
 const articleURL = `http://localhost:3000/articles`;
 const articleForm = document.querySelector('.article-form');
-const errorInfo = document.querySelector('.error-info');
+const errorInfoElement = document.querySelector('.error-info');
 let allArticles = [];
 
 fetch(articleURL)
@@ -28,13 +28,13 @@ articleForm.addEventListener('submit', function (event) {
     articleURL,
     allArticles,
     articleContainer,
-    errorInfo,
+    errorInfoElement,
   );
 });
 
 articleContainer.addEventListener('click', function (element) {
   if (element.target.dataset.action === 'edit') {
-    editArticle(allArticles, articleContainer, element, articleURL, errorInfo);
+    editArticle(allArticles, articleContainer, element, articleURL, errorInfoElement);
   } else if (element.target.dataset.action === 'delete') {
     deleteArticle(element, articleURL);
   }

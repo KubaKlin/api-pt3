@@ -6,7 +6,7 @@ export function editArticle(
   articleContainer,
   element,
   articleURL,
-  errorInfo,
+  errorInfoElement,
 ) {
   const articleData = allArticles.find(function (article) {
     return article.id === element.target.dataset.id;
@@ -23,7 +23,7 @@ export function editArticle(
     const titleInput = document.querySelector('.edit-title')?.value;
     const contentInput = document.querySelector('.edit-content')?.value;
     const editedArticle = document.querySelector(`.article-${articleData.id}`);
-    errorInfo.innerText = '';
+    errorInfoElement.innerText = '';
 
     fetch(`${articleURL}/${articleData.id}`, {
       method: 'PATCH',
@@ -57,9 +57,9 @@ export function editArticle(
       })
       .catch(function (response) {
         if (response.status === 409) {
-          errorInfo.innerText = 'article with this title already exists!';
+          errorInfoElement.innerText = 'article with this title already exists!';
         } else {
-          errorInfo.innerText = 'something went wrong!';
+          errorInfoElement.innerText = 'something went wrong!';
         }
       });
   });

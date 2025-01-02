@@ -6,14 +6,14 @@ export function addArticle(
   articleURL,
   allArticles,
   articleContainer,
-  errorInfo,
+  errorInfoElement,
 ) {
   event.preventDefault();
   const titleInput = articleForm.querySelector('.title')?.value;
   const contentInput = articleForm.querySelector('.content')?.value;
 
   if (titleInput) {
-    errorInfo.innerText = '';
+    errorInfoElement.innerText = '';
     const articleData = { title: titleInput };
 
     if (contentInput) {
@@ -34,7 +34,7 @@ export function addArticle(
         return response.json();
       })
       .then(function (article) {
-        if (!errorInfo) {
+        if (!errorInfoElement) {
           return;
         }
         addArticleStructure(article, articleContainer);
@@ -42,12 +42,12 @@ export function addArticle(
       })
       .catch(function (response) {
         if (response.status === 409) {
-          errorInfo.innerText = 'article with this title already exists!';
+          errorInfoElement.innerText = 'article with this title already exists!';
         } else {
-          errorInfo.innerText = 'something went wrong!';
+          errorInfoElement.innerText = 'something went wrong!';
         }
       });
   } else {
-    errorInfo.innerText = 'please fill in all fields!';
+    errorInfoElement.innerText = 'please fill in all fields!';
   }
 }

@@ -29,8 +29,12 @@ export function editArticle(
       method: 'PATCH',
       body: JSON.stringify({
         title: !titleInput ? articleData.title : titleInput,
-        content: !contentInput ? articleData.content : contentInput,
+        content:
+          contentInput === null || contentInput === undefined
+            ? articleData.content
+            : contentInput,
       }),
+
       headers: {
         'Content-Type': 'application/json',
       },

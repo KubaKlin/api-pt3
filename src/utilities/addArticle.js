@@ -34,7 +34,9 @@ export function addArticle(
         return response.json();
       })
       .then(function (article) {
-        errorInfo.innerText = '';
+        if (!errorInfo) {
+          return;
+        }
         addArticleStructure(article, articleContainer);
         allArticles.push(article);
       })

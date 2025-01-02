@@ -4,10 +4,9 @@ export function deleteArticle(element, articleURL) {
     headers: {
       'Content-Type': 'application/json',
     },
-  })
-    .catch(function (error) {
-      console.error('Delete failed:', error);
-    });
+  }).catch(function (error) {
+    console.error('Delete failed:', error);
+  });
   const articleElement = document.querySelector(
     `.article-${element.target.dataset.id}`,
   );

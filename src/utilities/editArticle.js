@@ -30,9 +30,7 @@ export function editArticle(
       body: JSON.stringify({
         title: !titleInput ? articleData.title : titleInput,
         content:
-          contentInput === null || contentInput === undefined
-            ? articleData.content
-            : contentInput,
+          contentInput === '' ? null : contentInput,
       }),
 
       headers: {

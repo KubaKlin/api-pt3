@@ -55,7 +55,12 @@ body {
 }
 
 .edit-button {
+  margin-right: 5px;
   background-color: dodgerblue;
+}
+
+.edit-button:disabled {
+  background-color: #ccc;
 }
 
 .delete-button {

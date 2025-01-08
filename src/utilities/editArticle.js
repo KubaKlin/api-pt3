@@ -15,6 +15,8 @@ export function editArticle(
   const editForm = articleContainer.querySelector(
     `.edit-article-${element.target.dataset.id}`,
   );
+  const editformButton = articleContainer.querySelector(`.edit-${element.target.dataset.id}`);
+  editformButton.disabled = true;
   const form = addEditForm(articleData);
   editForm?.appendChild(form);
 
@@ -52,6 +54,7 @@ export function editArticle(
         });
         editForm?.remove();
         addEditedArticle(article, editedArticle, articleContainer);
+        editformButton.disabled = false;
       })
       .catch(function (response) {
         if (response.status === 409) {

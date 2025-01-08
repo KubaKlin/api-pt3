@@ -1,9 +1,11 @@
 export default function addEditedArticle(article, editedArticle) {
   const heading = document.createElement('h2');
   heading.textContent = article.title;
+  heading.classList.add(`article-title-${article.id}`);
 
   const content = document.createElement('p');
   content.textContent = article.content;
+  content.classList.add(`article-content-${article.id}`);
 
   const editButton = document.createElement('button');
   editButton.setAttribute('data-id', article.id);

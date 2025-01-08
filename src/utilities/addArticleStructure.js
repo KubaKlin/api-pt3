@@ -4,10 +4,12 @@ export default function addArticleStructure(article, articleContainer) {
 
   const articleTitle = document.createElement('h2');
   articleTitle.textContent = article.title;
+  articleTitle.classList.add(`article-title-${article.id}`);
   articleWrapper.appendChild(articleTitle);
 
   const articleContent = document.createElement('p');
   articleContent.textContent = article.content;
+  articleContent.classList.add(`article-content-${article.id}`);
   articleWrapper.appendChild(articleContent);
 
   const editButton = document.createElement('button');

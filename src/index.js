@@ -34,7 +34,13 @@ articleForm.addEventListener('submit', function (event) {
 
 articleContainer.addEventListener('click', function (element) {
   if (element.target.dataset.action === 'edit') {
-    editArticle(allArticles, articleContainer, element, articleURL, errorInfoElement);
+    editArticle(
+      allArticles,
+      articleContainer,
+      element,
+      articleURL,
+      errorInfoElement,
+    );
   } else if (element.target.dataset.action === 'delete') {
     deleteArticle(element, articleURL);
   }

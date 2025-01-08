@@ -42,7 +42,8 @@ export function addArticle(
       })
       .catch(function (response) {
         if (response.status === 409) {
-          errorInfoElement.innerText = 'article with this title already exists!';
+          errorInfoElement.innerText =
+            'article with this title already exists!';
         } else {
           errorInfoElement.innerText = 'something went wrong!';
         }

@@ -4,12 +4,16 @@ export function addEditForm(articleData) {
   form.action = 'index.html';
   form.method = 'post';
 
-  const articleTitle = document.querySelector(`.article-title-${articleData.id}`);
+  const articleTitle = document.querySelector(
+    `.article-title-${articleData.id}`,
+  );
   const titleInput = document.createElement('input');
   titleInput.className = 'edit-title';
   titleInput.value = articleTitle.innerText;
 
-  const articleContent = document.querySelector(`.article-content-${articleData.id}`);
+  const articleContent = document.querySelector(
+    `.article-content-${articleData.id}`,
+  );
   const contentInput = document.createElement('input');
   contentInput.className = 'edit-content';
   contentInput.value = articleContent.innerText;

@@ -9,14 +9,14 @@ export function addEditForm(articleData) {
   );
   const titleInput = document.createElement('input');
   titleInput.className = 'edit-title';
-  titleInput.value = articleTitle.innerText;
+  titleInput.value = articleTitle?.innerText;
 
   const articleContent = document.querySelector(
     `.article-content-${articleData.id}`,
   );
   const contentInput = document.createElement('input');
   contentInput.className = 'edit-content';
-  contentInput.value = articleContent.innerText;
+  contentInput.value = articleContent?.innerText;
 
   const saveButton = document.createElement('input');
   saveButton.type = 'submit';
